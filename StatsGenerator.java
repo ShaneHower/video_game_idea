@@ -5,6 +5,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class StatsGenerator {
+    // create a nested hashmap. will be of the form {"type" ={"str"=10, "mag"= 15 ...}, "next_type" = {...}...) 
     HashMap<String, Integer> stats = new HashMap<String, Integer>();
     List<Integer> random_numbers = new ArrayList<>();
     List<Integer> choose_stats = new ArrayList<>();
@@ -14,8 +15,10 @@ public class StatsGenerator {
 
     public List generate(){
         Random rand = new Random();
+        
+        // do the following 5 times to create the 5 stats
         for(int i = 0; i < 5; i++){
-
+            // stats generator based on dnd. get 4 random numbers, drop the lowest and sum the remaining 3 integers.
             for (int j = 0; j < 4; j++) {
                 // randomly generate a number from 1-6
                 int n = rand.nextInt(6) + 1;
@@ -37,16 +40,21 @@ public class StatsGenerator {
     }
 
     public HashMap allocate_stats(){
+        // call the previous method, maybe I should figure out a less messy way to do this because it will 
+        // be recreating the list everytime. for now it works because this method is called in the Creature class
+        // once and only once.
         StatsGenerator new_stat = new StatsGenerator();
         choose_stats = new_stat.generate();
-
+        
+        // heres the nested hashmap 
         HashMap<String, HashMap<String, Integer>> creature_type = new HashMap<>();
         List<String> type_name = new ArrayList<>();
         List<String> cook_stat = new ArrayList<>();
         List<String> host_stat = new ArrayList<>();
         List<String> maint_stat = new ArrayList<>();
         List<String> waiter_stat = new ArrayList<>();
-
+        
+        // order the most important stats depending on class
         cook_stat.add("str");
         cook_stat.add("luck");
         cook_stat.add("def");
@@ -76,6 +84,8 @@ public class StatsGenerator {
         type_name.add("Maintenance");
         type_name.add("Host");
 
+        // sort the list of stats then reverse it so the highest value is first. this will be used to dump into the
+        // empty hashmap we created above
         Collections.sort(choose_stats);
         Collections.reverse(choose_stats);
 
