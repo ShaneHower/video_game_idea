@@ -53,29 +53,29 @@ public class Combat {
 
     public double take_damage(double damage){
 
-        if(specialty == "Cook" && opp_spec == "Host"){
-            damage = Math.round(damage + att_mod);
+if(specialty == "Cook" && opp_spec == "Host"){
+            damage = Math.round(damage * 1.3);
         }
         else if(specialty == "Host" && opp_spec == "Maintenance"){
-            damage = Math.round((damage + att_mod));
+            damage = Math.round((damage *1.3));
         }
         else if(specialty == "Maintenance" && opp_spec == "Waiter"){
-            damage = Math.round(damage + att_mod);
+            damage = Math.round(damage *1.3);
         }
         else if(specialty == "Waiter" && opp_spec == "Cook"){
-            damage = Math.round(damage + att_mod);
+            damage = Math.round(damage * 1.3);
         }
         else if(specialty == "Cook" && opp_spec == "Waiter"){
-            damage = Math.round(damage - att_mod);
+            damage = Math.round(damage * 0.7);
         }
         else if(specialty == "Host" && opp_spec=="Cook"){
-            damage = Math.round(damage - att_mod);
+            damage = Math.round(damage * 0.7);
         }
         else if(specialty == "Maintenance" && opp_spec == "Host"){
-            damage = Math.round(damage-att_mod);
+            damage = Math.round(damage * 0.7);
         }
         else if(specialty =="Waiter" && opp_spec == "Maintenance"){
-            damage = Math.round(damage-att_mod);
+            damage = Math.round(damage * 0.7);
         }
         else {
             damage = Math.round(damage);
