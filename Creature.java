@@ -1,26 +1,28 @@
 package vg;
-import java.util.Scanner;
 
-import java.text.MessageFormat;
+import java.util.*;
+
 public class Creature {
 
     String name = new String();
     String specialty = new String();
-    int health, mana, str, magic, spd, def;
+    int health, mana, magic, spd, str, def, luck;
 
+    StatsGenerator new_generator = new StatsGenerator();
+    HashMap<String, HashMap<String, Integer>> creature_stats = new_generator.allocate_stats();
 
     // has to be same name as class
-    public Creature(String name, String specialty, int health, int mana, int str, int magic, int spd, int def){
+    public Creature(String name, String specialty){
         this.name = name;
         this.specialty = specialty;
-        this.health = health;
-        this.mana = mana;
-        this. str = str;
-        this.magic = magic;
-        this.spd = spd;
-        this.def = def;
+        System.out.println(creature_stats);
+
     }
+
+
     public int get_def(){
+        HashMap<String, Integer> stats = creature_stats.get(specialty);
+        def = stats.get("def");
         return def;
     }
 
@@ -33,17 +35,28 @@ public class Creature {
     }
 
     public int get_str(){
+        HashMap<String, Integer> stats = creature_stats.get(specialty);
+        str = stats.get("str");
         return str;
     }
 
     public int get_magic(){
+        HashMap<String, Integer> stats = creature_stats.get(specialty);
+        def = stats.get("mag");
         return magic;
     }
 
     public int get_spd(){
+        HashMap<String, Integer> stats = creature_stats.get(specialty);
+        def = stats.get("spd");
         return spd;
     }
 
+    public int get_luck(){
+        HashMap<String, Integer> stats = creature_stats.get(specialty);
+        luck = stats.get("luck");
+        return luck;
+    }
     public String get_name(){
         return name;
     }
