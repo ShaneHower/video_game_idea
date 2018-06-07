@@ -7,15 +7,16 @@ public class Creature {
     String name = new String();
     String specialty = new String();
     int health, mana, magic, spd, str, def, luck;
-
+    
+    // generate the stats for the creature
     StatsGenerator new_generator = new StatsGenerator();
+    // allocate the stats so that we can use them in the preceding methods
     HashMap<String, HashMap<String, Integer>> creature_stats = new_generator.allocate_stats();
 
     // has to be same name as class
     public Creature(String name, String specialty){
         this.name = name;
         this.specialty = specialty;
-        System.out.println(creature_stats);
 
     }
 
